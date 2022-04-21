@@ -6,12 +6,19 @@ class EmployeesListItem extends Component {
     super(props);
     this.state = {
       increase: false,
+      premium: false,
     }
   }
 
   onIncrease = () => {
     this.setState(({increase}) => ({
       increase: !increase
+    }))
+  }
+
+  onPremium = () => {
+    this.setState(state => ({
+      premium: !state.premium
     }))
   }
 
@@ -23,9 +30,13 @@ class EmployeesListItem extends Component {
       classNames += " increase";
     }
 
+    if(this.state.premium) {
+      classNames += ' like'
+    }
+
     return (
       <li className={classNames}>
-        <span className="list-group-item-label">{name}</span>
+        <span className="list-group-item-label" onClick={this.onPremium}>{name}</span>
         <input
           type="text"
           className="list-group-item-input"

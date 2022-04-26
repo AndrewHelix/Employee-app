@@ -18,6 +18,10 @@ class EmployeesAddForm extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
+    if (this.state.name.length < 3 || this.state.salary.length < 1) {
+      return
+    }
+    
     this.props.onAdd(this.state)
     this.setState({
       name: '',
